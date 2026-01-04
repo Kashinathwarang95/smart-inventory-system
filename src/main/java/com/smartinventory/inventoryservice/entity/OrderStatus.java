@@ -1,6 +1,6 @@
 package com.smartinventory.inventoryservice.entity;
 
-public enum OrderStarus {
+public enum OrderStatus {
     PLACED,
     CANCELLED
 }

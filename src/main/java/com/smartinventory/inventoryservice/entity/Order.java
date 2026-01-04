@@ -1,6 +1,5 @@
 package com.smartinventory.inventoryservice.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
@@ -19,12 +18,14 @@ public class Order {
 
     private double totalAmount;
 
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;   // ✅ REQUIRED
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    @JsonManagedReference
     private List<OrderItem> orderItems;
 
     public Order() {
         this.orderDate = LocalDateTime.now();
-        this.status = OrderStatus.PLACED;
+        this.status = OrderStatus.PLACED; // default
     }
 }

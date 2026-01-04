@@ -6,7 +6,9 @@ import com.smartinventory.inventoryservice.entity.OrderItem;
 import com.smartinventory.inventoryservice.entity.Product;
 import com.smartinventory.inventoryservice.repository.OrderRepository;
 import com.smartinventory.inventoryservice.repository.ProductRepository;
+import lombok.Data;
 import org.springframework.stereotype.Service;
+import com.smartinventory.inventoryservice.entity.OrderStatus;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ public class OrderService {
 
     private final ProductRepository productRepository;
     private final OrderRepository orderRepository;
+
 
     public OrderService (ProductRepository productRepository,OrderRepository orderRepository){
         this.orderRepository = orderRepository;
@@ -40,6 +43,7 @@ public class OrderService {
         // create order
 
         Order order = new Order();
+        order.setStatus(OrderStatus.PLACED);
         OrderItem item = new OrderItem();
         item.setProduct(product);
         item.setQuantity(dto.getQuantity());
